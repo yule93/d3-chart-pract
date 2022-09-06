@@ -1,0 +1,9 @@
+[
+  {"id": "1", "DATATYPE": "A", "AREA": "KO", "CNT": "10"},
+  {"id": "2", "DATATYPE": "A", "AREA": "US", "CNT": "17"},
+  {"id": "3", "DATATYPE": "A", "AREA": "EU", "CNT": "10"},
+  {"id": "4", "DATATYPE": "B", "AREA": "CF", "CNT": "31"},
+  {"id": "5", "DATATYPE": "B", "AREA": "KO", "CNT": "2"},
+  {"id": "6", "DATATYPE": "B", "AREA": "KH", "CNT": "10"},
+  {"id": "7", "DATATYPE": "C", "AREA": "US", "CNT": "5"}
+]

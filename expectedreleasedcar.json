@@ -1,0 +1,7 @@
+[
+  {"id": "1", "MODELCODE": "A", "MODELYR": "2021", "CNT": "1"},
+  {"id": "2", "MODELCODE": "B", "MODELYR": "2022", "CNT": "6"},
+  {"id": "3", "MODELCODE": "B", "MODELYR": "2020", "CNT": "2"},
+  {"id": "4", "MODELCODE": "L", "MODELYR": "2019", "CNT": "5"},
+  {"id": "5", "MODELCODE": "H", "MODELYR": "2022", "CNT": "2"}
+]
