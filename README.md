@@ -2,7 +2,7 @@
 
 ## 목표
 
--[x] bar + line
--[x] column
--[x] pie
--[x] grouping data
+- [x] bar + line
+- [x] column
+- [x] pie
+- [x] grouping data
