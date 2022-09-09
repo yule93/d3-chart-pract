@@ -135,22 +135,22 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="panel panel-default">
             <div class="panel-body">
-              <div class="successfail-box">
+              <div class="first-chart-box">
                 <div class="sub-title left-margin">
                   <h4>차트 1</h4>
                 </div>
                 <div
-                  id="successfail"
+                  id="first-chart"
                   class="chart-body"
                   style="float: left"
                 ></div>
               </div>
-              <div class="monthlyrelease-box">
+              <div class="second-chart-box">
                 <div class="sub-title left-margin">
                   <h4>차트 2</h4>
                 </div>
                 <div
-                  id="monthlyrelease"
+                  id="second-chart"
                   class="chart-body"
                   style="float: right"
                 ></div>
@@ -159,7 +159,7 @@
           </div>
           <div class="panel panel-default">
             <div class="panel-body">
-              <div class="releasedcar-box">
+              <div class="third-chart-box">
                 <div class="sub-title left-margin">
                   <h4>차트 3</h4>
                 </div>
@@ -168,17 +168,17 @@
                     type="checkbox"
                     class="form-check-input left-margin"
                     id="except-year"
-                    onclick="updateReleasedCar()"
+                    onclick="updateThirdChart()"
                   />
                   연도 미포함
                 </div>
                 <div
-                  id="releasedcar"
+                  id="third-chart"
                   class="chart-body"
                   style="float: left"
                 ></div>
               </div>
-              <div class="releasestatus-box">
+              <div class="fourth-chart-box">
                 <div class="sub-title left-margin">
                   <h4>차트 4</h4>
                 </div>
@@ -207,11 +207,11 @@
     <script type="text/javascript">
       $(document).ready(function () {
         $("#divContainerCD").css("height", $(window).height() - 104);
-        drawChart("successfail", null, null);
-        drawChart("monthlyrelease", null, null, 2);
-        drawChart("releasedcar", null);
+        drawChart("first-chart", null, null);
+        drawChart("second-chart", null, null, 2);
+        drawChart("third-chart", null);
         // drawChart("releasestatus", null);
-        drawPieChart("monthlyrelease", null);
+        drawPieChart("second-chart", null);
       });
 
       var width = 0,
@@ -266,14 +266,14 @@
           (yScale = d3.scaleLinear().range([height, 0]));
 
         switch (dataType + typeNum) {
-          case "successfail":
+          case "first-chart":
             var g = svg
               .append("g")
               .attr("transform", "translate(" + 100 + "," + 100 + ")");
 
             // 차트 데이터가 없을 때,
             if (ChartData == null) {
-              d3.json("./expectedsucessfaileddata.json")
+              d3.json("./firstchartdata.json")
                 .then(function (data) {
                   // console.log(data.slice(0, 1));
                   xScale.domain(
@@ -476,14 +476,14 @@
             }
             break;
           // * 동기화 건수 그래프
-          case "monthlyrelease":
+          case "second-chart":
             var g = svg
               .append("g")
               .attr("transform", "translate(" + 100 + "," + 100 + ")");
 
             // 차트 데이터가 없을 때,
             if (ChartData == null) {
-              d3.json("./expectedmonthlyreleasedata.json")
+              d3.json("./secondchartdata.json")
                 .then(function (data) {
                   // console.log(data.slice(0, 1));
                   xScale.domain(
@@ -611,14 +611,14 @@
                 .catch((e) => console.log(e));
             }
             break;
-          case "monthlyrelease2":
+          case "second-chart2":
             var g = svg
               .append("g")
               .attr("transform", "translate(" + 100 + "," + 100 + ")");
 
             // 차트 데이터가 없을 때,
             if (ChartData == null) {
-              d3.json("./expectedmonthlyreleasedata.json")
+              d3.json("./secondchartdata.json")
                 .then(function (data) {
                   var x = d3
                       .scaleLinear()
@@ -692,7 +692,7 @@
                 .catch((e) => console.log(e));
             }
             break;
-          case "successfail2":
+          case "first-chart2":
             var g = svg
               .append("g")
               .attr("transform", "translate(" + 100 + "," + 100 + ")");
@@ -839,13 +839,13 @@
             }
             break;
 
-          case "releasedcar":
+          case "third-chart":
             var g = svg
               .append("g")
               .attr("transform", "translate(" + 100 + "," + 100 + ")");
 
             if (ChartData == null) {
-              d3.json("./expectedreleasedcar.json")
+              d3.json("./thirdchartdata.json")
                 .then(function (data) {
                   xScale
                     .domain(
@@ -990,13 +990,13 @@
             }
             break;
 
-          case "releasestatus":
+          case "fourth-chart":
             var g = svg
               .append("g")
               .attr("transform", "translate(" + 100 + "," + 100 + ")");
             // 차트 데이터가 없을 때,
             if (ChartData == null) {
-              d3.json("./expectedreleasestatus.json")
+              d3.json("./fourthchartdata.json")
                 .then(function (data) {
                   xScale.domain(
                     data.map(function (d) {
@@ -1202,7 +1202,7 @@
           .append("g")
           .attr("transform", "translate(" + width + ", " + height / 2 + ")");
 
-        d3.json("./expectedmonthlyreleasedata.json").then(function (data) {
+        d3.json("./secondchartdata.json").then(function (data) {
           // * 넘겨받은 data를 d.CNT 기준으로 퍼센테이지를 만들고 배치시켜준다.
           var pie = d3.pie().value(function (d) {
             return d.CNT;
@@ -1236,12 +1236,12 @@
       }
 
       // 체크박스 클릭 시 연도 통일/분리하는 함수
-      function updateReleasedCar() {
+      function updateThirdChart() {
         var check = document.getElementById("except-year");
         // * check가 true면 연도 미포함이므로 none 붙임
         // * check가 false면 연도 포함이므로 none 붙임
-        if (check.checked) drawChart("releasedcar", null, "none");
-        else drawChart("releasedcar", null);
+        if (check.checked) drawChart("third-chart", null, "none");
+        else drawChart("third-chart", null);
       }
 
       // mouseover event handler function
